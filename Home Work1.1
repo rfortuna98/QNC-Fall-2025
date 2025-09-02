@@ -1,0 +1,36 @@
+Python 3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)] on darwin
+Enter "help" below or click "Help" above for more information.
+>>> def correct_diagnosis(sensitivity, specificity):
+...     false_positive_rate = 1 - specificity
+...     priors = [round(p, 1) for p in [i * 0.1 for i in range(11)]]
+... 
+...     print("Prior Infection Rate | P(Infected | Positive Test)")
+...     print("---------------------|-----------------------------")
+... 
+...     for p in priors:
+...         if p == 0:
+...             posterior = 0.0
+...         elif p == 1:
+...             posterior = 1.0
+...         else:
+...             numerator = sensitivity * p
+...             denominator = numerator + false_positive_rate * (1 - p)
+...             posterior = numerator / denominator
+...         
+...         print(f"         {p:.1f}         |          {posterior:.4f}")
+... 
+...         
+>>> correct_diagnosis(sensitivity=1, specificity=.95)
+Prior Infection Rate | P(Infected | Positive Test)
+---------------------|-----------------------------
+         0.0         |          0.0000
+         0.1         |          0.6897
+         0.2         |          0.8333
+         0.3         |          0.8955
+         0.4         |          0.9302
+         0.5         |          0.9524
+         0.6         |          0.9677
+         0.7         |          0.9790
+         0.8         |          0.9877
+         0.9         |          0.9945
+         1.0         |          1.0000
