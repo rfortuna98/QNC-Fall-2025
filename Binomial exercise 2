@@ -1,0 +1,27 @@
+#Exercice 2 
+#14 quanta in a terminal, theoretical release p=0.1
+#Test result is 8. Probability=?
+#What is the probability if it was p=0.7  
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+# Parameters
+n = 14       # number of quanta
+p = 0.1      # probability of release per quantum
+
+# Possible outcomes: 0 to 10 quanta released
+k_values = list(range(n + 1))
+probabilities = binom.pmf(k_values, n, p)
+
+# Display probabilities
+for k, prob in zip(k_values, probabilities):
+    print(f"P({k} quanta released) = {prob:.4f}")
+
+# Optional: plot the distribution
+plt.bar(k_values, probabilities, color='skyblue', edgecolor='black')
+plt.title('Binomial Distribution of Quanta Release')
+plt.xlabel('Number of Quanta Released')
+plt.ylabel('Probability')
+plt.xticks(k_values)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
