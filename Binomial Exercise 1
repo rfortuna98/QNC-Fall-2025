@@ -1,0 +1,24 @@
+#from chat gpt exercice 1
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+# Parameters
+n = 10       # number of quanta
+p = 0.2      # probability of release per quantum
+
+# Possible outcomes: 0 to 10 quanta released
+k_values = list(range(n + 1))
+probabilities = binom.pmf(k_values, n, p)
+
+# Display probabilities
+for k, prob in zip(k_values, probabilities):
+    print(f"P({k} quanta released) = {prob:.4f}")
+
+# Optional: plot the distribution
+plt.bar(k_values, probabilities, color='skyblue', edgecolor='black')
+plt.title('Binomial Distribution of Quanta Release')
+plt.xlabel('Number of Quanta Released')
+plt.ylabel('Probability')
+plt.xticks(k_values)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
